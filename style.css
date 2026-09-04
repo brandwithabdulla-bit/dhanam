@@ -166,7 +166,7 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 1000;
     border-bottom: 1px solid transparent;
     transition: var(--transition);
-    padding: 24px 0;
+    padding: 18px 0;
 }
 
 .navbar.scrolled {
@@ -183,7 +183,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .logo-img {
-    height: 38px;
+    height: 72px;
     width: auto;
     object-fit: contain;
     /* Force logo to dark red if it's the white version */
@@ -270,17 +270,58 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding-top: 40px;
+    gap: 60px;
 }
 
 .hero-text-box {
+    width: 55%;
     max-width: 700px;
 }
 
 .hero-text-box .eyebrow-text {
     color: var(--spice-gold);
+}
+
+.hero-visual-composition {
+    position: relative;
+    width: 45%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-pack {
+    position: absolute;
+    width: 230px;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floating-pack.pack-1 {
+    z-index: 2;
+    transform: rotate(-5deg) translateY(20px);
+    right: 40px;
+}
+
+.floating-pack.pack-2 {
+    z-index: 1;
+    transform: rotate(10deg) translateY(-30px);
+    right: -20px;
+    opacity: 0.95;
+}
+
+.hero-visual-composition:hover .floating-pack.pack-1 {
+    transform: rotate(-2deg) translateY(0) scale(1.05);
+}
+
+.hero-visual-composition:hover .floating-pack.pack-2 {
+    transform: rotate(15deg) translateY(-40px) scale(1.05);
 }
 
 .main-headline {
@@ -330,6 +371,37 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 17px;
     color: rgba(36, 28, 26, 0.8);
     margin-bottom: 24px;
+}
+
+.editorial-visual.collage {
+    position: relative;
+}
+
+.floating-pack-group {
+    position: absolute;
+    bottom: -30px;
+    left: -40px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.floating-pack.pack-3, .floating-pack.pack-4 {
+    position: relative;
+    width: 140px;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border: 3px solid var(--pure-white);
+}
+
+.floating-pack.pack-3 {
+    transform: rotate(-8deg);
+    top: -20px;
+}
+
+.floating-pack.pack-4 {
+    transform: rotate(6deg);
+    top: 20px;
 }
 
 .editorial-visual {
@@ -923,24 +995,35 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==========================================================================
    FLOATING WHATSAPP
    ========================================================================== */
+.floating-call,
 .floating-whatsapp {
     position: fixed;
     right: 30px;
-    bottom: 40px;
-    background-color: #25D366;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 16px;
     border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
     z-index: 1000;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     gap: 0;
     overflow: hidden;
 }
 
+.floating-whatsapp {
+    bottom: 40px;
+    background-color: #25D366;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+}
+
+.floating-call {
+    bottom: 110px;
+    background-color: var(--dhanam-red);
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.25);
+}
+
+.floating-call .call-text,
 .floating-whatsapp .whatsapp-text {
     max-width: 0;
     opacity: 0;
@@ -959,6 +1042,14 @@ img { max-width: 100%; height: auto; display: block; }
     padding-right: 28px;
 }
 
+.floating-call:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(220, 38, 38, 0.35);
+    background-color: #B91C1C;
+    padding-right: 28px;
+}
+
+.floating-call:hover .call-text,
 .floating-whatsapp:hover .whatsapp-text {
     max-width: 200px;
     opacity: 1;
@@ -1089,6 +1180,63 @@ img { max-width: 100%; height: auto; display: block; }
    RESPONSIVE DESIGN (MOBILE FOCUSED TYPOGRAPHY)
    ========================================================================== */
 @media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding-top: 20px;
+    }
+    
+    .hero-text-box, .hero-visual-composition {
+        width: 100%;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .supporting-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-visual-composition {
+        height: auto;
+        margin-top: 30px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .floating-pack.pack-1, .floating-pack.pack-2 {
+        position: relative;
+        right: auto;
+        transform: none;
+        width: 45%;
+        max-width: 200px;
+    }
+
+    .floating-pack.pack-1 { transform: rotate(-3deg); z-index: 2; margin-right: -20px; }
+    .floating-pack.pack-2 { transform: rotate(5deg) translateY(10px); z-index: 1; margin-left: -20px; }
+
+    .editorial-visual.collage {
+        margin-bottom: 30px;
+    }
+
+    .floating-pack-group {
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .floating-pack.pack-3, .floating-pack.pack-4 {
+        width: 30%;
+        max-width: 120px;
+    }
+
     .about-editorial, .hero-product-display, .why-editorial, .campaign-split, .contact-grid, .footer-layout {
         grid-template-columns: 1fr;
         gap: 60px;
@@ -1116,6 +1264,7 @@ img { max-width: 100%; height: auto; display: block; }
     }
 
     /* Mobile Layout Adjustments */
+    .logo-img { height: 52px; }
     .hamburger { display: block; }
     
     .nav-menu {
@@ -1139,7 +1288,8 @@ img { max-width: 100%; height: auto; display: block; }
 
     .hero-buttons {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        gap: 16px;
     }
 
     .process-list {
@@ -1148,8 +1298,43 @@ img { max-width: 100%; height: auto; display: block; }
 
     .process-list, .product-grid-3, .product-grid-4, .prep-steps, .quality-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
+    .product-card.grid-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: var(--pure-white);
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        text-align: left;
+    }
+
+    .prod-img-wrapper {
+        width: 120px;
+        margin-bottom: 0;
+        margin-right: 20px;
+        flex-shrink: 0;
+    }
+
+    .prod-img img {
+        border-radius: 6px;
+    }
+
+    .product-title {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+
+    .product-hover-action {
+        margin-top: 8px;
+        opacity: 1;
+        transform: none;
+        align-items: flex-start;
+    }
+    
     .hero-product-display {
         grid-template-columns: 1fr;
         padding: 40px 24px;
@@ -1160,11 +1345,6 @@ img { max-width: 100%; height: auto; display: block; }
         grid-template-columns: 1fr;
         gap: 40px;
     }
-
-    .product-hover-action {
-        align-items: center;
-    }
-    
     .drawer-content {
         padding: 0 24px 40px;
     }
@@ -1183,17 +1363,27 @@ img { max-width: 100%; height: auto; display: block; }
         text-align: center;
     }
 
-    /* Mobile Floating WhatsApp */
+    /* Mobile Floating Buttons */
+    .floating-call,
     .floating-whatsapp {
         right: 16px;
-        bottom: 20px;
         padding: 14px;
     }
     
+    .floating-whatsapp {
+        bottom: 20px;
+    }
+    
+    .floating-call {
+        bottom: 80px;
+    }
+    
+    .floating-call:hover,
     .floating-whatsapp:hover {
         padding-right: 14px;
     }
     
+    .floating-call:hover .call-text,
     .floating-whatsapp:hover .whatsapp-text {
         max-width: 0;
         opacity: 0;
